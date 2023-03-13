@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Gradient Background</title>
+    <style>
+        body {
+            background: linear-gradient(to right, rgb(255, 255, 0), rgb(255, 0, 0));
+            text-align: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* khoảng cách giữa các input loại color  */
+        input[type=color] {
+            margin: 5px;
+
+        }
+
+        h1 {
+            color: rgb(102, 100, 102);
+            letter-spacing: 25px;
+            font-size: 60px;
+        }
+        h2{
+            color: rgb(102, 100, 102);
+            letter-spacing: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>BACKGROUND <br /> GENERATOR</h1>
+    <div>
+        <input class="color1" type="color" id="color1" value="#ff0000">
+        <input class="color2" type="color" id="color2" value="#ffff00">
+        <button class="button" onclick="randomColors()">Random</button>
+    </div>
+    <h2>THIS IS THE BACKGROUND</h2>
+    <b>linear-gradient(to right, rgb(255, 255, 0), rgb(255, 0, 0))</b>
+    <script>
+        function randomColors() {
+            var color1 = getRandomColor();
+            var color2 = getRandomColor();
+            document.body.style.background = "linear-gradient(to right, " + color1 + ", " + color2 + ")";
+            document.getElementById("color1").value = color1;
+            document.getElementById("color2").value = color2;
+        }
+
+        function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
+
+    <script>
+        document.getElementById("color1").addEventListener("input", function () {
+            document.body.style.background = "linear-gradient(to right, " + this.value + ", " + document.getElementById("color2").value + ")";
+        });
+
+        document.getElementById("color2").addEventListener("input", function () {
+            document.body.style.background = "linear-gradient(to right, " + document.getElementById("color1").value + ", " + this.value + ")";
+        });
+        document.getElementById("color1").addEventListener("input",function(){
+
+        });
+    </script>
+</body>
+
+</html>
